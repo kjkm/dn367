@@ -123,5 +123,29 @@ public class Utilities {
 				System.out.println("e.getMessage:" + e.getMessage());
 			}
 		}
-	
+
+		/**
+		 * Charlie LeWarne - Takes in first and last name of student and gets all of the study sessions that student is a part of
+		 * @param fname the first name of the requested student
+		 * @param lname the last name of the requested student
+		 * @return ResultSet that contains all the necessary information about the study session
+		 */
+		public ResultSet getSessionsByStudent(String fname, String lname){
+			ResultSet output = null;
+			String sql = "";
+			try{
+				sql = "SELECT STUDY_SESSION.sessionID, STUDY_SESSION.tutorID, STUDY_SESSION.sessionDay, STUDY_SESSION.sessionTime, STUDY_SESSION.duration, STUDY_SESSION.location FROM ATTENDS, STUDENT, STUDY_SESSION WHERE STUDENT.studentID=ATTENDS.studentID AND ATTENDS.sessionID=STUDY_SESSION.sessionID AND firstName=? and lastName=?";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.clearParameters();
+				ps.setString(1, fname);
+				ps.setString(2, lname);
+				output = ps.executeQuery();
+			}
+			catch(SQLException e){
+				System.out.println("Query failed");
+				System.out.println("SQL: " + sql);
+				System.out.println("Error message: " + e.getMessage);
+			}
+			return output;
+		}
 }
