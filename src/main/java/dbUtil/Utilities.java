@@ -74,5 +74,35 @@ public class Utilities {
 
 			return rset;
 		}
-	
+		
+		/**
+		 * Cody Uehara - Takes in session ID, class subject, and class number and 
+		 * returns the tutor's ID, session day, and session time
+		 * @param sessionID The unique ID of a study session
+		 * @param classSub 4 letters denoting the department of the class - ex: CSCI
+		 * for computer science
+		 * @param classNum unique number identifying the specific class of a department
+		 * @return ResultSet filled with tutorID, sessionDay, and sessionTime
+		 */
+		public ResultSet studySessionsOfClass(int sessionID, String classSub, int classNum){
+		    ResultSet rset = null;
+		    String sql = null;
+		    
+		    try {
+		        //prepared statement with given parameters String classSub and int classNum
+		        sql = "SELECT tutorID, sessionDay, sessionTime FROM STUDY_SESSION, CLASS_FOR "
+		               + "WHERE CLASS_FOR.sessionID = STUDY_SESSION.sessionID and "
+		               + "CLASS_FOR.sessionID = ? and classSub = ? and classNum = ?";
+		        PreparedStatement pstmt = conn.prepareStatement(sql);
+		        pstmt.clearParameters();
+		        pstmt.setInt(1, sessionID);
+		        pstmt.setString(2, classSub);
+		        pstmt.setInt(3, classNum);
+		        rset = pstmt.executeQuery();
+		    } catch (SQLException e) {
+		        System.out.println("sql: " + sql);
+		        System.out.println("e.getMessage:" + e.getMessage());
+		    }
+		    return rset;
+		}
 }

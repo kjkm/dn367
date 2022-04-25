@@ -15,6 +15,12 @@ public class TestUtilities {
 			System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
 		}
 		
+		//test for studySessionsOfClass
+		ResultSet rs2 = dbObj.studySessionsOfClass(1, "CSCI", 144);
+		while(rs2.next()) {
+			System.out.println(rs2.getString(1) + " " + rs2.getString(2) + " " + rs2.getString(3));
+		}
+		
 		dbObj.closeDB();
 	}
 }
