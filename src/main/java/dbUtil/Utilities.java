@@ -74,5 +74,54 @@ public class Utilities {
 
 			return rset;
 		}
+		
+		/**
+		 * Cade Lilley - Takes in tutorID, sessionDay, sessionTime, duration, and
+		 * location of a study session that is to be created.
+		 * @param tutorID
+		 * @param sessionDay
+		 * @param sessionTime
+		 * @param duration
+		 * @param location
+		 */
+		public void createStudySession(int tutorID, String sessionDay, String sessionTime, float duration, String location) {
+			String sql = null;
+			
+			try {
+				sql = "INSERT INTO STUDY_SESSION (tutorID, sessionDay, sessionTime, duration, location) VALUES (?, ?, ?, ?, ?)";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.clearParameters();
+				pstmt.setInt(1, tutorID);
+				pstmt.setString(2, sessionDay);
+				pstmt.setString(3, sessionTime);
+				pstmt.setFloat(4, duration);
+				pstmt.setString(5, location);
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("sql:" + sql);
+				System.out.println("e.getMessage:" + e.getMessage());
+			}
+		}
+		
+		/**
+		 * Cade Lilley - Takes in studentID and sessionID and removes the respective ATTENDS table instance
+		 * @param studentID
+		 * @param sessionID
+		 */
+		public void leaveStudySession(int studentID, int sessionID) {
+			String sql = null;
+			
+			try {
+				sql = "DELETE FROM ATTENDS WHERE studentID = ? and sessionID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.clearParameters();
+				pstmt.setInt(1, studentID);
+				pstmt.setInt(2, sessionID);
+				pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("sql:" + sql);
+				System.out.println("e.getMessage:" + e.getMessage());
+			}
+		}
 	
 }
