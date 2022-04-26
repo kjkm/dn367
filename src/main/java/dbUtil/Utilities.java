@@ -108,11 +108,11 @@ public class Utilities {
 		    
 		 /** Cade Lilley - Takes in tutorID, sessionDay, sessionTime, duration, and
 		 * location of a study session that is to be created.
-		 * @param tutorID
-		 * @param sessionDay
-		 * @param sessionTime
-		 * @param duration
-		 * @param location
+		 * @param tutorID int(8)
+		 * @param sessionDay 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY'
+		 * @param sessionTime '900','930','1000','1030','1100','1130','1200','1230','1300','1330','1400','1430','1500','1530','1600','1630','1700','1730','1800','1830','1900','1930','2000'
+		 * @param duration float
+		 * @param location any string or zoom link
 		 */
 		public void createStudySession(int tutorID, String sessionDay, String sessionTime, float duration, String location) {
 			String sql = null;
@@ -127,6 +127,7 @@ public class Utilities {
 				pstmt.setFloat(4, duration);
 				pstmt.setString(5, location);
 				pstmt.executeUpdate();
+				System.out.println("Study Session added successfully.");
 			} catch (SQLException e) {
 				System.out.println("sql:" + sql);
 				System.out.println("e.getMessage:" + e.getMessage());
@@ -135,8 +136,8 @@ public class Utilities {
 		
 		/**
 		 * Cade Lilley - Takes in studentID and sessionID and removes the respective ATTENDS table instance
-		 * @param studentID
-		 * @param sessionID
+		 * @param studentID int(8)
+		 * @param sessionID int
 		 */
 		public void leaveStudySession(int studentID, int sessionID) {
 			String sql = null;
@@ -148,7 +149,7 @@ public class Utilities {
 				pstmt.setInt(1, studentID);
 				pstmt.setInt(2, sessionID);
 				pstmt.executeUpdate();
-				System.out.println("Study Session added successfully.");
+				System.out.println("Student successfully removed from Study Session.");
 			} catch (SQLException e) {
 				System.out.println("sql:" + sql);
 				System.out.println("e.getMessage:" + e.getMessage());

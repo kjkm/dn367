@@ -10,8 +10,18 @@ public class TestUtilities {
 	public static void main(String[] args) throws SQLException {
 		dbObj.openDB();
 		
-		//test for createStudySession (Cade)
+		//test for leaveStudySession
+		System.out.print("Please input student ID: ");
+		String studentIDInput = keyboard.nextLine();
+		int sID = Integer.parseInt(studentIDInput);
 		
+		System.out.print("Please input session ID: ");
+		String sessionIDInput = keyboard.nextLine();
+		int seshID = Integer.parseInt(sessionIDInput);
+		
+		dbObj.leaveStudySession(sID, seshID);
+		
+		//test for createStudySession (Cade)
 		// Tutor ID is of type int(8)
 		System.out.print("Please input tutor ID: ");
 		String tutorIDInput = keyboard.nextLine();
@@ -35,6 +45,8 @@ public class TestUtilities {
 		
 		dbObj.createStudySession(tutorID, sessionDay, sessionTime, duration, location);
 		
+		
+		//test for getTutorInfo
 		ResultSet rs = dbObj.getTutorInfo("12345678");
 		while (rs.next()) {
 			System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
@@ -63,10 +75,7 @@ public class TestUtilities {
 		ResultSet sessionByClass = dbObj.getSessionsByClass(sessionID, classSub, classNum);
 		while(sessionByClass.next()) {
 			System.out.println(sessionByClass.getString(1) + " " + sessionByClass.getString(2) + " " + sessionByClass.getString(3));
-		}
-		
-		//test for leaveStudySession
-		
+		}		
 		
 		dbObj.closeDB();
 	}
