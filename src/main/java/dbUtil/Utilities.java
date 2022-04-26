@@ -148,6 +148,7 @@ public class Utilities {
 				pstmt.setInt(1, studentID);
 				pstmt.setInt(2, sessionID);
 				pstmt.executeUpdate();
+				System.out.println("Study Session added successfully.");
 			} catch (SQLException e) {
 				System.out.println("sql:" + sql);
 				System.out.println("e.getMessage:" + e.getMessage());
