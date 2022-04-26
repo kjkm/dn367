@@ -26,11 +26,19 @@ public class TestUtilities {
 		}
 		
 		//test for studySessionsOfClass
-		ResultSet rs2 = dbObj.getSessionsByClass(1, "CSCI", 144);
-		while(rs2.next()) {
-			System.out.println(rs2.getString(1) + " " + rs2.getString(2) + " " + rs2.getString(3));
+		System.out.print("Please input session ID: ");
+		String input = keyboard.nextLine();
+		int sessionID = Integer.parseInt(input);
+		System.out.print("Please input class subject: ");
+		String classSub = keyboard.nextLine();
+		System.out.print("Please input class number: ");
+		input = keyboard.nextLine();
+		int classNum = Integer.parseInt(input);
+						
+		ResultSet sessionByClass = dbObj.getSessionsByClass(sessionID, classSub, classNum);
+		while(sessionByClass.next()) {
+			System.out.println(sessionByClass.getString(1) + " " + sessionByClass.getString(2) + " " + sessionByClass.getString(3));
 		}
-		
 		dbObj.closeDB();
 	}
 
