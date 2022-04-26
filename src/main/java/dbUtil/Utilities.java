@@ -52,7 +52,7 @@ public class Utilities {
 		/**
 		 * Adrian Ronquillo - Takes in a studentId, and returns the information 
 		 * for a tutor (Student ID, first name, lsat name, classes, subjects)
-		 * @param studentId The student ID to query the database
+		 * @param studentID The student ID to query the database
 		 */
 		public ResultSet getTutorInfo(String studentID) {
 			ResultSet rset = null;
@@ -180,5 +180,29 @@ public class Utilities {
 				System.out.println("Error message: " + e.getMessage());
 			}
 			return output;
+		}
+
+		/**
+		 * Kieran Kim-Murphy- Takes in sessionID for a study session and a location, and updates that study session to
+		 * 		take place at the give location.
+		 *
+		 * @param sessionID the ID of the study session to be changed
+		 * @param newLocation a string representation of the new location for the study session
+		 */
+		public void changeSessionLocation(int sessionID, String newLocation){
+			String sql = "";
+			try{
+				sql = "UPDATE STUDY_SESSION SET location = ? WHERE sessionID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.clearParameters();
+				pstmt.setString(1, newLocation);
+				pstmt.setInt(2, sessionID);
+				pstmt.executeUpdate();
+				System.out.println("Updated session location.");
+			}
+			catch(SQLException e){
+				System.out.println("SQL: " + sql);
+				System.out.println("Error: " + e.getMessage());
+			}
 		}
 }

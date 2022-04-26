@@ -9,7 +9,17 @@ public class TestUtilities {
 	
 	public static void main(String[] args) throws SQLException {
 		dbObj.openDB();
-		
+
+		//test for changeSessionLocation
+		System.out.println("Please input session ID: ");
+		int testID = keyboard.nextInt();
+		keyboard.nextLine();
+		System.out.println("Please input new session location: ");
+		String locationInput = keyboard.nextLine();
+
+		dbObj.changeSessionLocation(testID, locationInput);
+
+
 		//test for leaveStudySession
 		System.out.print("Please input student ID: ");
 		String studentIDInput = keyboard.nextLine();
