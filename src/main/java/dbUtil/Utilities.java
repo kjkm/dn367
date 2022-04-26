@@ -156,6 +156,7 @@ public class Utilities {
 
 		/**
 		 * Charlie LeWarne - Takes in first and last name of student and gets all of the study sessions that student is a part of
+		 * 
 		 * @param fname the first name of the requested student
 		 * @param lname the last name of the requested student
 		 * @return ResultSet that contains all the necessary information about the study session
