@@ -60,9 +60,10 @@ public class Utilities {
 
 			try {
 				// create a Statement and an SQL string for the statement
-				sql = "SELECT CONCAT(firstName, ' ', lastName) name, studentID, classNumber, "
-						+ "classSubject FROM STUDENT, TUTORS_CLASS WHERE isTutor = 1 AND "
-						+ "tutorID = studentID AND studentID = ?;";
+				sql = "SELECT CONCAT(firstName, ' ', lastName) name, STUDENT.studentID as studentID, classNumber, "
+						+ "classSubject, sessionDay, sessionTime FROM STUDENT, TUTORS_CLASS, ATTENDS, STUDY_SESSION WHERE STUDENT.isTutor = 1 AND "
+						+ "TUTORS_CLASS.tutorID = STUDENT.studentID AND STUDENT.studentID = ? AND ATTENDS.studentID = STUDENT.studentID AND "
+						+ "STUDY_SESSION.sessionID = ATTENDS.sessionID;";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.clearParameters();
 				pstmt.setString(1, studentID); // set the 1 parameter

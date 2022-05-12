@@ -85,7 +85,7 @@ public class TestUtilities {
 		String tutorID = keyboard.nextLine();
 		ResultSet rs = dbObj.getTutorInfo(tutorID);
 		while (rs.next()) {
-			System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
+			System.out.println(rs.getString(1) + " " + rs.getString(2) + "\t" + rs.getString(4) + "\t" + rs.getString(3) + "\t" + rs.getString(5) + "\t" + rs.getString(6));
 		}
 	}
 	
