@@ -84,20 +84,20 @@ public class Utilities {
 		 * @param classNum unique number identifying the specific class of a department
 		 * @return ResultSet filled with tutorID, sessionDay, and sessionTime
 		 */
-		public ResultSet getSessionsByClass(int sessionID, String classSub, int classNum){
+		public ResultSet getSessionsByClass(String classSub, int classNum){
 		    ResultSet rset = null;
 		    String sql = null;
 		    
 		    try {
 		        //prepared statement with given parameters String classSub and int classNum
-		        sql = "SELECT tutorID, sessionDay, sessionTime FROM STUDY_SESSION, CLASS_FOR "
+		        sql = "SELECT STUDY_SESSION.sessionID, STUDY_SESSION.sessionDay, STUDY_SESSION.sessionTime, STUDY_SESSION.Location, STUDY_SESSION.tutorID FROM STUDY_SESSION, CLASS_FOR "
 		               + "WHERE CLASS_FOR.sessionID = STUDY_SESSION.sessionID and "
-		               + "CLASS_FOR.sessionID = ? and classSub = ? and classNum = ?";
+		               + "classSub = ? and classNum = ?";
 		        PreparedStatement pstmt = conn.prepareStatement(sql);
 		        pstmt.clearParameters();
-		        pstmt.setInt(1, sessionID);
-		        pstmt.setString(2, classSub);
-		        pstmt.setInt(3, classNum);
+//		        pstmt.setInt(1, sessionID);
+		        pstmt.setString(1, classSub);
+		        pstmt.setInt(2, classNum);
 		        rset = pstmt.executeQuery();
 		    } catch (SQLException e) {
 		        System.out.println("sql: " + sql);
@@ -205,4 +205,28 @@ public class Utilities {
 				System.out.println("Error: " + e.getMessage());
 			}
 		}
+		
+		
+		
+//		public ResultSet getSessionsByClass(int sessionID, String classSub, int classNum){
+//		    ResultSet rset = null;
+//		    String sql = null;
+//		    
+//		    try {
+//		        //prepared statement with given parameters String classSub and int classNum
+//		        sql = "SELECT tutorID, sessionDay, sessionTime FROM STUDY_SESSION, CLASS_FOR "
+//		               + "WHERE CLASS_FOR.sessionID = STUDY_SESSION.sessionID and "
+//		               + "CLASS_FOR.sessionID = ? and classSub = ? and classNum = ?";
+//		        PreparedStatement pstmt = conn.prepareStatement(sql);
+//		        pstmt.clearParameters();
+//		        pstmt.setInt(1, sessionID);
+//		        pstmt.setString(2, classSub);
+//		        pstmt.setInt(3, classNum);
+//		        rset = pstmt.executeQuery();
+//		    } catch (SQLException e) {
+//		        System.out.println("sql: " + sql);
+//		        System.out.println("e.getMessage:" + e.getMessage());
+//		    }
+//		    return rset;
+//		}
 }

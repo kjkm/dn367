@@ -8,33 +8,92 @@ public class TestUtilities {
 	static Scanner keyboard = new Scanner(System.in);
 	
 	public static void main(String[] args) throws SQLException {
-		dbObj.openDB();
-
-		//test for changeSessionLocation
-		System.out.println("Please input session ID: ");
-		int testID = keyboard.nextInt();
-		keyboard.nextLine();
-		System.out.println("Please input new session location: ");
-		String locationInput = keyboard.nextLine();
-
-		dbObj.changeSessionLocation(testID, locationInput);
-
-
-		//test for leaveStudySession
-		System.out.print("Please input student ID: ");
-		String studentIDInput = keyboard.nextLine();
-		int sID = Integer.parseInt(studentIDInput);
+		int choice;
+		String choiceInp;
+		boolean done = false;
 		
-		System.out.print("Please input session ID: ");
-		String sessionIDInput = keyboard.nextLine();
-		int seshID = Integer.parseInt(sessionIDInput);
-		
-		dbObj.leaveStudySession(sID, seshID);
-		
+		while(!done) {
+			System.out.println();
+			System.out.println("Choose a method to test: \n");
+			System.out.println("1) Open the database");
+			System.out.println("2) List all study sessions for a class");
+			System.out.println("3) List all information for a tutor");
+			System.out.println("4) Create a new study session");
+			System.out.println("5) Leave a study session");
+			System.out.println("6) Find all study sessions a student is a part of");
+			System.out.println("7) Change study session location");
+			System.out.println("8) Quit and close database");
+			choiceInp = keyboard.nextLine();
+			choice = Integer.parseInt(choiceInp);
+			if(choice > 8 || choice < 1) {
+				System.out.println("Please input a valid choice");
+				continue;
+			}
+			switch(choice) {
+			case 1: {
+				dbObj.openDB();
+				break;
+			}
+			case 2: {
+				studySessionsByClass();
+				break;
+			}
+			case 3: {
+				tutorInfo();
+				break;
+			}
+			case 4: {
+				createNewStudySession();
+				break;
+			}
+			case 5: {
+				leaveStudySession();
+				break;
+			}
+			case 6: {
+				findSessionsByStudent();
+				break;
+			}
+			case 7: {
+				changeSessionLocation();
+				break;
+			}
+			case 8: {
+				dbObj.closeDB();
+				done = true;
+				break;
+			}
+			}
+			
+		}
+	}
+	static void studySessionsByClass() throws SQLException {
+		System.out.print("Please input class subject: ");
+		String classSub = keyboard.nextLine();
+		System.out.print("Please input class number: ");
+		String input = keyboard.nextLine();
+		int classNum = Integer.parseInt(input);
+						
+		ResultSet sessionByClass = dbObj.getSessionsByClass(classSub, classNum);
+		while(sessionByClass.next()) {
+			System.out.println(sessionByClass.getString(1) + " " + sessionByClass.getString(2) + " " + sessionByClass.getString(3) + " " + sessionByClass.getString(4) + " " + sessionByClass.getString(5));
+		}	
+	}
+	
+	static void tutorInfo() throws SQLException {
+		System.out.print("Please input the desired tutor ID: ");
+		String tutorID = keyboard.nextLine();
+		ResultSet rs = dbObj.getTutorInfo(tutorID);
+		while (rs.next()) {
+			System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
+		}
+	}
+	
+	static void createNewStudySession() throws SQLException {
 		//test for createStudySession (Cade)
 		// Tutor ID is of type int(8)
 		System.out.print("Please input tutor ID: ");
-		String tutorIDInput = keyboard.nextLine();
+		String tutorIDInput = keyboard.next();
 		int tutorID = Integer.parseInt(tutorIDInput);
 		
 		// Can be 'MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY'
@@ -54,14 +113,20 @@ public class TestUtilities {
 		String location = keyboard.nextLine();
 		
 		dbObj.createStudySession(tutorID, sessionDay, sessionTime, duration, location);
+	}
+	static void leaveStudySession() throws SQLException {
+		//test for leaveStudySession
+		System.out.print("Please input student ID: ");
+		String studentIDInput = keyboard.nextLine();
+		int sID = Integer.parseInt(studentIDInput);
 		
+		System.out.print("Please input session ID: ");
+		String sessionIDInput = keyboard.nextLine();
+		int seshID = Integer.parseInt(sessionIDInput);
 		
-		//test for getTutorInfo
-		ResultSet rs = dbObj.getTutorInfo("12345678");
-		while (rs.next()) {
-			System.out.println(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4));
-		}
-		
+		dbObj.leaveStudySession(sID, seshID);
+	}
+	static void findSessionsByStudent() throws SQLException {
 		//test for sessionsByStudent
 		System.out.print("Please input the desired first name of the student: ");
 		String fnameSessionsByStudent = keyboard.nextLine();
@@ -71,23 +136,32 @@ public class TestUtilities {
 		while(sessionsbyStudent.next()){
 			System.out.println(sessionsbyStudent.getInt(1) + " " + sessionsbyStudent.getString(2) + " " + sessionsbyStudent.getString(3)  + " " + sessionsbyStudent.getString(4)  + " " + sessionsbyStudent.getString(5)  + " " + sessionsbyStudent.getString(6));
 		}
-		
-		//test for studySessionsOfClass
-		System.out.print("Please input session ID: ");
-		String input = keyboard.nextLine();
-		int sessionID = Integer.parseInt(input);
-		System.out.print("Please input class subject: ");
-		String classSub = keyboard.nextLine();
-		System.out.print("Please input class number: ");
-		input = keyboard.nextLine();
-		int classNum = Integer.parseInt(input);
-						
-		ResultSet sessionByClass = dbObj.getSessionsByClass(sessionID, classSub, classNum);
-		while(sessionByClass.next()) {
-			System.out.println(sessionByClass.getString(1) + " " + sessionByClass.getString(2) + " " + sessionByClass.getString(3));
-		}		
-		
-		dbObj.closeDB();
 	}
+	
+	static void changeSessionLocation() throws SQLException {
+		//test for changeSessionLocation
+		System.out.println("Please input session ID: ");
+		int testID = keyboard.nextInt();
+		keyboard.nextLine();
+		System.out.println("Please input new session location: ");
+		String locationInput = keyboard.nextLine();
+
+		dbObj.changeSessionLocation(testID, locationInput);
+	}
+	
+//	static void studySessionsByClass() throws SQLException {
+//		System.out.print("Please input session ID: ");
+//		int sessionID = keyboard.nextInt();
+//		System.out.print("Please input class subject: ");
+//		String classSub = keyboard.next();
+//		System.out.print("Please input class number: ");
+//		int classNum = keyboard.nextInt();
+//		//int classNum = Integer.parseInt(input);
+//						
+//		ResultSet sessionByClass = dbObj.getSessionsByClass(sessionID, classSub, classNum);
+//		while(sessionByClass.next()) {
+//			System.out.println(sessionByClass.getString(1) + " " + sessionByClass.getString(2) + " " + sessionByClass.getString(3) + " " + sessionByClass.getString(4) + " " + sessionByClass.getString(5));
+//		}	
+//	}
 
 }
