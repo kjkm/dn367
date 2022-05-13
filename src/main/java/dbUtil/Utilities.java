@@ -3,7 +3,6 @@ package dbUtil;
 import java.sql.*;
 
 public class Utilities {
-	
 	// Connection object
 		private Connection conn = null; 
 		 
@@ -48,6 +47,14 @@ public class Utilities {
 				System.err.println("Failed to close database connection: " + e);
 			}
 		}// closeDB
+		
+		/**
+		 * Constructor for Utilities
+		 */
+		public Utilities() {
+			this.openDB();
+		}
+		
 		
 		/**
 		 * Adrian Ronquillo - Takes in a studentId, and returns the information 
@@ -205,6 +212,27 @@ public class Utilities {
 				System.out.println("SQL: " + sql);
 				System.out.println("Error: " + e.getMessage());
 			}
+		}
+		
+		// HELPER METHODS ------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		/**
+		 * Function which gets all the tutors from the database
+		 * @return
+		 */
+		public ResultSet getTutors() {
+			String sql = "";
+			ResultSet result = null;
+			try{
+				sql = "SELECT firstName, lastName, studentID FROM STUDENT WHERE isTutor = 1";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				result = pstmt.executeQuery();
+			}
+			catch(SQLException e){
+				System.out.println("SQL: " + sql);
+				System.out.println("Error: " + e.getMessage());
+			}
+			return result;
 		}
 		
 		

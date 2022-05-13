@@ -7,6 +7,7 @@
 <ul>
 <li><a href="getSessionsByStudentForm.jsp">View Sessions By Student</a></li>
 <li><a href="leaveStudySessionForm.jsp">Leave Study Session</a></li>
+<li><a href="getTutorInformationForm.jsp">View Tutor Information</a></li>
 </ul>
 </body>
 </html>
