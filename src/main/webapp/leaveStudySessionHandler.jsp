@@ -1,25 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %> <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
 
 <html>
-<body>
+  <%@ include file="nav.jsp" %>
+  <body>
+    <% String studentIDString = request.getParameter("studentID"); String
+    sessionIDString = request.getParameter("sessionID"); myUtil.openDB(); int
+    studentID = Integer.parseInt(studentIDString); int sessionID =
+    Integer.parseInt(sessionIDString);
+    myUtil.leaveStudySession(sessionID,sessionID); myUtil.closeDB();%>
 
-<% String studentIDString = request.getParameter("studentID");
-   String sessionIDString = request.getParameter("sessionID");
-   myUtil.openDB();
-   int studentID = Integer.parseInt(studentIDString);
-   int sessionID = Integer.parseInt(sessionIDString);
-   myUtil.leaveStudySession(sessionID,sessionID);
-   myUtil.closeDB();%>
-   
-<h2>Congratulations! The specified student was removed from the study session!</h2>
-<h3>Please click the button below to return to the main menu</h3>
-<form action="leaveStudySessionForm.jsp" method="get">
-<input type="submit" value="Return to Main Menu">
-</form>
-</body>
+    <h2>
+      Congratulations! The specified student was removed from the study session!
+    </h2>
+    <h3>Please click the button below to return to the main menu</h3>
+    <form action="leaveStudySessionForm.jsp" method="get">
+      <input type="submit" value="Return to Main Menu" />
+    </form>
+  </body>
 </html>
