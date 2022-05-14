@@ -9,30 +9,33 @@ pageEncoding="UTF-8"%>
   <%@ include file="meta.jsp" %>
   <body>
     <%@ include file="nav.jsp" %>
-    <h1>Leave study session</h1>
+    <h2>Leave study session</h2>
+    <h3>Please input the information required to leave the study session</h3>
 
     <form action="leaveStudySessionHandler.jsp" method="get">
-      Please input the information required to leave the study session: <br />
-
-      <label for="studentID">Student ID Number: </label>
-      <input
-        type="text"
-        id="studentID"
-        name="studentID"
-        value=""
-        size="10"
-        required
-      /><br />
-      <label for="sessionID">Session ID Number: </label>
-      <input
-        type="text"
-        id="sessionID"
-        name="sessionID"
-        value=""
-        size="10"
-        required
-      /><br />
-      <input type="submit" value="Submit" />
+      <div class="input">
+	      <label for="studentID">Student ID Number: </label>
+	      <input
+	        type="text"
+	        id="studentID"
+	        name="studentID"
+	        value=""
+	        size="10"
+	        required
+	      />
+      </div>
+      <div class="input">
+	      <label for="sessionID">Session ID Number: </label>
+	      <input
+	        type="text"
+	        id="sessionID"
+	        name="sessionID"
+	        value=""
+	        size="10"
+	        required
+	      />
+      </div>
+      <input class="submit-button" type="submit" value="Submit" />
     </form>
   </body>
 </html>
