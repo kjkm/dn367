@@ -4,22 +4,23 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
-
+<%@ include file="meta.jsp" %>
 <html>
   <%@ include file="nav.jsp" %>
   <body>
-    <% String studentID = request.getParameter("studentID"); ResultSet rs =
-    myUtil.getTutorInfo(studentID); %>
+    <% String studentID = request.getParameter("studentID"); ResultSet rs = myUtil.getTutorInfo(studentID); %>
 
     <h2>All information for student ID: <%=studentID%></h2>
     <table>
-      <tr>
-        <th>Name</th>
-        <th>StudentID</th>
-        <th>Class</th>
-        <th>Day</th>
-        <th>Time</th>
-      </tr>
+      <thead>
+        <tr>
+	      <th>Name</th>
+	      <th>StudentID</th>
+	      <th>Class</th>
+	      <th>Day</th>
+	      <th>Time</th>
+	    </tr>
+      </thead>
 
       <tbody>
         <% while (rs.next()) { %>

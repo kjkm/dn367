@@ -2,13 +2,25 @@
 pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-
-<nav>
-  <ul>
-    <li>
-      <a href="getSessionsByStudentForm.jsp">View Sessions By Student</a>
-    </li>
-    <li><a href="leaveStudySessionForm.jsp">Leave Study Session</a></li>
-    <li><a href="getTutorInformationForm.jsp">View Tutor Information</a></li>
-  </ul>
-</nav>
+<html lang="en">
+  <%@ include file="meta.jsp" %>
+  <body id="header-content">
+    <h1 id="title">Datanauts</h1>
+    <nav id="#nav">
+      <div class="nav-row">
+        <a href="getSessionsByStudentForm.jsp">Get Study Sessions</a>
+        <span>-</span>
+        <a href="getTutorInformationForm.jsp">Get Tutor Info</a>
+        <span>-</span>
+        <a href="createStudySessionForm.jsp">Create Study Session</a>
+      </div>
+      <div class="nav-row">
+        <a href="leaveStudySessionForm.jsp">Leave Study Session</a>
+        <span>-</span>
+        <a href="getSessionsByStudentForm.jsp">Find Student Sessions</a>
+        <span>-</span>
+        <a href="getSessionsByStudentForm.jsp">Change Session Location</a>
+      </div>
+    </nav>
+  </body>
+</html>

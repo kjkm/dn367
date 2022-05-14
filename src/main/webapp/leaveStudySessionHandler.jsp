@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
-  <%@ include file="nav.jsp" %>
+  <%@ include file="meta.jsp" %> <%@ include file="nav.jsp" %>
   <body>
     <% String studentIDString = request.getParameter("studentID"); String
     sessionIDString = request.getParameter("sessionID"); myUtil.openDB(); int

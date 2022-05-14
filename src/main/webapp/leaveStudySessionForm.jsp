@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
 <html>
+  <%@ include file="meta.jsp" %>
   <body>
     <%@ include file="nav.jsp" %>
     <h1>Leave study session</h1>

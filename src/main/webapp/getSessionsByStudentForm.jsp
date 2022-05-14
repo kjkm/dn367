@@ -5,6 +5,7 @@ pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
+  <%@ include file="meta.jsp" %>
   <body>
     <%@ include file="nav.jsp" %>
     <h1>Get Sessions By Student</h1>

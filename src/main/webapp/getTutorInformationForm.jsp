@@ -4,23 +4,23 @@ pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %> <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
-
+<%@ include file="meta.jsp" %>
 <html>
   <%@ include file="nav.jsp" %>
   <body>
-    <h1>View tutor information</h1>
-    <h2>Select one of the tutors below to view their information</h2>
+    <h2>Get tutor information</h2>
+    <h3>Select one of the tutors below to view their information</h3>
 
     <% ResultSet rs = myUtil.getTutors(); %>
     <form action="getTutorInformationHandler.jsp" method="get">
-      <select name="studentID">
+      <select id="student-selector" name="studentID">
         <% while (rs.next()) { %>
-        <option value=<%= rs.getString(3) %>>
-          <%= rs.getString(1) + " " + rs.getString(2) %>
+        <option value=<%= rs.getString(3) %>
+          > <%= rs.getString(1) + " " + rs.getString(2) %>
         </option>
         <% } %>
       </select>
-      <input type="submit" value="Submit" />
+      <input id="submit-button" type="submit" value="Submit" />
     </form>
   </body>
 </html>

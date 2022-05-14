@@ -1,0 +1,96 @@
+body {
+  background-color: #1a1a1d;
+  font-family: "Merienda One", cursive;
+  width: 100vw;
+}
+
+#title {
+  font-size: 5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+nav {
+  margin: auto;
+  width: 60%;
+}
+
+h1 {
+	color: #c3073f;
+}
+
+h2 {
+	font-size: 3rem;
+	color: #950740;
+	text-align: center;
+	margin: 4rem 0 -2rem 0;
+}
+
+h3 {
+	font-size: 2rem;
+	color: #950740;
+	text-align: center;
+}
+
+.nav-row {
+  text-align: center;
+  color: white;
+}
+
+.nav-row a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  transition: 0.3s all;
+}
+
+.nav-row span {
+	margin: 0.7rem;
+}
+
+.nav-row a:hover {
+	color: #950740;
+}
+
+table {
+	border: 1px solid white;
+	display: block;
+	margin: 3rem auto;
+	width: fit-content;
+	color: white;
+}
+
+td {
+	padding: 1rem;
+}
+
+thead {
+	border-bottom: 1px solid white;
+}
+
+#student-selector {
+	display: block;
+	margin: 5rem auto;
+	width: 20rem;
+	height: 6rem;
+	font-size: 2rem;
+	font-family: "Merienda One", cursive;
+	text-align: center;
+}
+
+#submit-button {
+	display: block;
+	width: 10rem;
+	height: 3rem;
+	background-color: #c3073f;
+	color: white;
+	font-family: "Merienda One", cursive;
+	transition: 0.3s all;
+	cursor: pointer;
+	border-radius: 10%;
+	margin: 0 auto;
+}
+
+#submit-button:hover {
+	background-color: #950740;
+}
