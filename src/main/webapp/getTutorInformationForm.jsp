@@ -20,7 +20,7 @@ pageEncoding="UTF-8"%>
         </option>
         <% } %>
       </select>
-      <input id="submit-button" type="submit" value="Submit" />
+      <input class="submit-button" type="submit" value="Submit" />
     </form>
   </body>
 </html>

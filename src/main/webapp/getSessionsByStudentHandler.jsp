@@ -20,14 +20,17 @@ pageEncoding="UTF-8"%>
     myUtil.getSessionsByStudent(fname,lname);%>
 
     <table>
-      <tr>
-        <th>Session ID</th>
-        <th>Tutor ID</th>
-        <th>Session Day</th>
-        <th>Session Time</th>
-        <th>Duration</th>
-        <th>Location</th>
-      </tr>
+      <thead>
+         <tr>
+           <th>Session ID</th>
+           <th>Tutor ID</th>
+            <th>Session Day</th>
+        	<th>Session Time</th>
+        	<th>Duration</th>
+        	<th>Location</th>
+         </tr>
+      </thead>
+     
       <%while (rs.next()){ %>
       <tr>
         <td><%=rs.getString(1) %></td>

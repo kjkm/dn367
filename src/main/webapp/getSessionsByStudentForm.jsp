@@ -8,29 +8,35 @@ pageEncoding="UTF-8"%>
   <%@ include file="meta.jsp" %>
   <body>
     <%@ include file="nav.jsp" %>
-    <h1>Get Sessions By Student</h1>
+    <h2>Get Sessions By Student</h2>
+    <h3>Please enter the first and last name of the required student</h3>
 
     <form action="getSessionsByStudentHandler.jsp" method="get">
-      Please enter the first and last name of the required student: <br />
-      <label for="fname">First Name</label>
-      <input
-        type="text"
-        id="fname"
-        name="fname"
-        value=""
-        size="10"
-        required
-      /><br />
-      <label for="lname">Last Name</label>
-      <input
-        type="text"
-        id="lname"
-        name="lname"
-        value=""
-        size="10"
-        required
-      /><br />
-      <input type="submit" value="Submit" />
+      <div class="input">
+        <label for="fname">First Name</label>
+        <input
+          type="text"
+          id="fname"
+          name="fname"
+          value=""
+          size="10"
+          required
+        />
+      </div>
+      
+      <div class="input">
+        <label for="lname">Last Name</label>
+        <input
+          type="text"
+          id="lname"
+          name="lname"
+          value=""
+          size="10"
+          required
+        />
+      </div>
+     
+      <input class="submit-button" type="submit" value="Submit" />
     </form>
   </body>
 </html>
