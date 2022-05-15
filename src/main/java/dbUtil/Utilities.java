@@ -213,6 +213,32 @@ public class Utilities {
 				System.out.println("Error: " + e.getMessage());
 			}
 		}
+
+		/**
+		 * Kieran Kim-Murphy- Takes in sessionID for a study session and a day and time, and updates when the session
+		 * meets.
+		 *
+		 * @param sessionID the ID of the study session to be changed
+		 * @param newDay the new day of session
+		 * @param newTime the new time of session
+		 */
+		public void changeSessionTime(int sessionID, String newDay, String newTime){
+			String sql = "";
+			try{
+				sql = "UPDATE STUDY_SESSION SET sessionDay = ?, sessionTime = ? WHERE sessionID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.clearParameters();
+				pstmt.setString(1, newDay);
+				pstmt.setString(2, newTime);
+				pstmt.setInt(3, sessionID);
+				pstmt.executeUpdate();
+				System.out.println("Updated session day and time.");
+			}
+			catch(SQLException e){
+				System.out.println("SQL: " + sql);
+				System.out.println("Error: " + e.getMessage());
+			}
+		}
 		
 		// HELPER METHODS ------------------------------------------------------------------------------------------------------------------------------------------------
 		
