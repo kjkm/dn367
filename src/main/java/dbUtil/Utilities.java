@@ -218,7 +218,7 @@ public class Utilities {
 		
 		/**
 		 * Function which gets all the tutors from the database
-		 * @return
+		 * @return a ResultSet which contains all of the tutors from the database
 		 */
 		public ResultSet getTutors() {
 			String sql = "";
@@ -233,6 +233,26 @@ public class Utilities {
 				System.out.println("Error: " + e.getMessage());
 			}
 			return result;
+		}
+		
+		
+		/**
+		 * Function which gets all subjects from the database.
+		 * @return a ResultSet which contains all of the subjects from the database
+		 */
+		public ResultSet getSubject() {
+			String sql = "";
+			ResultSet rs = null;
+			try {
+				sql = "SELECT distinct classSubject from CLASS";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+			}
+			catch(SQLException e) {
+				System.out.println("SQL: " + sql);
+				System.out.println("Error: " + e.getMessage());
+			}
+			return rs;
 		}
 		
 		
