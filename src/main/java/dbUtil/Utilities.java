@@ -1,6 +1,11 @@
 package dbUtil;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.Base64;
+import java.util.HashMap; // import the HashMap class
 
 public class Utilities {
 	// Connection object
@@ -279,6 +284,38 @@ public class Utilities {
 				System.out.println("Error: " + e.getMessage());
 			}
 			return rs;
+		}
+		
+		/**
+		 * Function which checks to see if this student ID exists, and password matches
+		 * password in our database
+		 * @param studentID Inputted studentID
+		 * @param password Inputted password
+		 * @return True if valid login
+		 */
+		public HashMap<String, String> login(String studentID, String password) {
+			String sql = "";
+			ResultSet rs = null;
+			HashMap<String, String> user = new HashMap<String, String>();
+			try {
+				sql = "SELECT studentID, isTutor, CONCAT(firstName, ' ', lastName) name "
+						+ "FROM STUDENT WHERE studentID = ? AND password = sha2(?, 256)";
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setString(1, studentID);
+				ps.setString(2, password);
+				rs = ps.executeQuery();
+				boolean successful = rs.next();
+				
+				user.put("studentID", successful ? studentID : "");
+				user.put("isTutor", successful ? rs.getString(2) : "");
+				user.put("name", successful ? rs.getString(3) : "");
+			}
+			catch(SQLException e) {
+				System.out.println("SQL: " + sql);
+				System.out.println("Error: " + e.getMessage());
+			}
+			
+			return user;
 		}
 		
 		
