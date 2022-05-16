@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <%@ include file="nav.jsp" %>
+   <%
+	 HashMap<String, String> user = (HashMap<String, String>) session.getAttribute("user");
+	 if (user== null || user.get("studentID") == "") { %>
+	    	<jsp:forward page="login.jsp"></jsp:forward>
+	 <% } %>
   <body>
     <% String fname = request.getParameter("fname"); String lname =
     request.getParameter("lname"); myUtil.openDB(); ResultSet rs =

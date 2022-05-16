@@ -4,6 +4,11 @@
 <html>
   <%@ include file="nav.jsp" %>
   <body>
+   <%
+	 HashMap<String, String> user = (HashMap<String, String>) session.getAttribute("user");
+	 if (user== null || user.get("studentID") == "") { %>
+	    	<jsp:forward page="login.jsp"></jsp:forward>
+	 <% } %>
     <%
     String chosenClass = request.getParameter("class");
     System.out.println(chosenClass);

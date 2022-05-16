@@ -3,6 +3,11 @@
 
 <html>
   <%@ include file="meta.jsp" %> <%@ include file="nav.jsp" %>
+   <%
+	 HashMap<String, String> user = (HashMap<String, String>) session.getAttribute("user");
+	 if (user== null || user.get("studentID") == "") { %>
+	    	<jsp:forward page="login.jsp"></jsp:forward>
+	 <% } %>
   <body>
     <% String studentIDString = request.getParameter("studentID"); String
     sessionIDString = request.getParameter("sessionID"); myUtil.openDB(); int

@@ -29,6 +29,12 @@ h2 {
 	margin: 4rem 0 -2rem 0;
 }
 
+h4 {
+	font-size: 1.3rem;
+	color: #950740;
+	text-align: center;
+}
+
 h3 {
 	font-size: 2rem;
 	color: #950740;
@@ -111,8 +117,15 @@ thead {
 	text-align: center;
 }
 
+#logged {
+	margin-top: -2rem;
+}
 .input input {
 	height: 2rem;
 	font-size: 2rem;
 	font-family: "Merienda One", cursive;
+}
+
+.get-started {
+	margin-top: 3rem;
 }

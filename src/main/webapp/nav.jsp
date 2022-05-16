@@ -12,20 +12,25 @@ pageEncoding="UTF-8"%>
       HashMap<String, String> foundUser = (HashMap<String, String>) session.getAttribute("user");
       if (foundUser != null && foundUser.get("studentID") != "") {
     %>
+    <h4 id="logged">Logged in: <%= foundUser.get("name") %>, isTutor: <%= foundUser.get("isTutor") %></h4>
     <nav id="#nav">
       <div class="nav-row">
         <a href="getSessionsByClassForm.jsp">Get Study Sessions</a>
         <span>-</span>
         <a href="getTutorInformationForm.jsp">Get Tutor Info</a>
-        <span>-</span>
-        <a href="createStudySessionForm.jsp">Create Study Session</a>
+        <% if (foundUser.get("isTutor").equals("1")) { %>
+          <span>-</span>
+          <a href="createStudySessionForm.jsp">Create Study Session</a>
+        <% } %>
       </div>
       <div class="nav-row">
         <a href="leaveStudySessionForm.jsp">Leave Study Session</a>
         <span>-</span>
         <a href="getSessionsByStudentForm.jsp">Find Student Sessions</a>
-        <span>-</span>
-        <a href="updateSessionForm.jsp">Update Session</a>
+        <% if (foundUser.get("isTutor").equals("1")) { %>
+	      <span>-</span>
+	      <a href="updateSessionForm.jsp">Update Session</a>
+        <% } %>
       </div>
     </nav>
     <% } %>

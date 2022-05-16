@@ -15,17 +15,14 @@
     <% } %>
   
   <body>
-    <form action="loginHandler.jsp" method="get">
-	    <div class="input">
-	      <label for="studentID">Student ID</label>
-	      <input type="text" required name="studentID"/>
-	    </div>
-	    <div class="input">
-	      <label for="username">Password</label>
-	      <input type="password" required name="password"/>
-	    </div>
-	    
-	    <input type="submit" class="submit-button" value="Submit"/>
-    </form>
+    <%
+      HashMap<String, String> retrievedUser = (HashMap<String, String>) session.getAttribute("user");
+      if (retrievedUser != null && retrievedUser.get("isTutor").equals("1")) { %>
+        <h2>Welcome! You are a tutor, which means you can create and update study sessions!</h2>
+      <% } else { %>
+        <h2>Welcome! You aren't a tutor, but you can view and join study sessions!</h2>
+      <% } %>
+      
+      <a href="getSessionsByClassForm.jsp"><input type="submit" class="submit-button get-started" value="Get started"/></a>
   </body>
 </html>

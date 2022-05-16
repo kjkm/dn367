@@ -3,6 +3,11 @@
 <%@ include file="meta.jsp" %>
 <html>
   <%@ include file="nav.jsp" %>
+   <%
+	 HashMap<String, String> user = (HashMap<String, String>) session.getAttribute("user");
+	 if (user== null || user.get("studentID") == "") { %>
+	    	<jsp:forward page="login.jsp"></jsp:forward>
+	 <% } %>
   <body>
     <h2>Get tutor information</h2>
     <h3>Select one of the tutors below to view their information</h3>
