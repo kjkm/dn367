@@ -8,6 +8,12 @@ import java.util.Base64;
 import java.util.HashMap; // import the HashMap class
 
 public class Utilities {
+		private String[] sessionDays = {"MONDAY", "TUESDAY", "WEDNESDAY",
+				"THURSDAY", "FRIDAY"};
+		
+		private Integer[] sessionTimes = {900, 930, 1000, 1030, 1100, 1130, 1200, 1230, 1300, 1330, 1400, 1430, 1500,
+				1530, 1600, 1630, 1700, 1730, 1800, 1830, 1900, 1930, 2000};
+		
 	// Connection object
 		private Connection conn = null; 
 		 
@@ -146,7 +152,6 @@ public class Utilities {
 				System.out.println("e.getMessage:" + e.getMessage());
 			}
 			
-			//reference MEETING_TIMES ex: "WEDNESDAY 900"
 		}
 		
 		/**
@@ -340,6 +345,14 @@ public class Utilities {
 			}
 			
 			return user;
+		}
+		
+		public String[] getSessionDays() {
+			return sessionDays;
+		}
+		
+		public Integer[] getSessionTimes() {
+			return sessionTimes;
 		}
 		
 		

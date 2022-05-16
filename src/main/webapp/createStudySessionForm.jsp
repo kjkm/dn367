@@ -11,31 +11,39 @@
 	<%@ include file="nav.jsp" %>
 	<h2>Create Study Session</h2>
 	<h3>Enter study session fields</h3>
-	<form action="createStudySessionHandler.jsp" method="get">   
+	<form action="createStudySessionHandler.jsp" method="get"> 
+		<% String[] sessionDays = myUtil.getSessionDays(); %>
    		<div class="input">
-	      <label for="sessionDay">Session Day </label>
-	      <input
-	        type="text"
-	        id="sessionDay"
-	        name="sessionDay"
-	        value=""
-	        size="10"
-	        required
-	      />
+	      <label for="sessionDay">Session Day: </label>
+	      <select name="class" class="selector">
+	      	<% for (int i = 0; i < sessionDays.length; i++) { %>
+	      	<%
+	      		String val = sessionDays[i];
+	      	%>
+	      	<option value=<%= val %>
+            ><%= val %>
+          </option>
+	      	<% } %>
+	      </select>
       	</div>
+      	
+      	<% Integer[] sessionTimes = myUtil.getSessionTimes();  %>
    		<div class="input">
-	      <label for="sessionTime">Session Time </label>
-	      <input
-	        type="text"
-	        id="sessionTime"
-	        name="sessionTime"
-	        value=""
-	        size="10"
-	        required
-	      />
+	      <label for="sessionTime">Session Time: </label>
+	      <select name="class" class="selector">
+	      	<% for (int i = 0; i < sessionTimes.length; i++) { %>
+	      	<%
+	      		int val = sessionTimes[i];
+	      	%>
+	      	<option value=<%= val %>
+            ><%= val %>
+          </option>
+	      	<% } %>
+	      </select>
       	</div>
+      	
    		<div class="input">
-	      <label for="duration">Duration </label>
+	      <label for="duration">Duration (Hours): </label>
 	      <input
 	        type="text"
 	        id="duration"
@@ -45,6 +53,7 @@
 	        required
 	      />
       	</div>
+      	
    		<div class="input">
 	      <label for="location">Location </label>
 	      <input
