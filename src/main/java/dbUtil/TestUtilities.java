@@ -6,6 +6,11 @@ import java.util.Scanner;
 public class TestUtilities {
 	static Utilities dbObj = new Utilities();
 	static Scanner keyboard = new Scanner(System.in);
+
+	public static final String ANSI_RED = "\033[0;31m";
+	public static final String ANSI_YELLOW = "\033[0;33m";
+	public static final String ANSI_RESET = "\033[0m";
+	public static final String ANSI_GREEN = "\033[0;32m";
 	
 	public static void main(String[] args) throws SQLException {
 		int choice;
@@ -27,10 +32,7 @@ public class TestUtilities {
 			System.out.println("10) Quit and close database");
 			choiceInp = keyboard.nextLine();
 			choice = Integer.parseInt(choiceInp);
-			if(choice > 10 || choice < 1) {
-				System.out.println("Please input a valid choice");
-				continue;
-			}
+
 			switch(choice) {
 			case 1: {
 				dbObj.openDB();
@@ -72,6 +74,9 @@ public class TestUtilities {
 				dbObj.closeDB();
 				done = true;
 				break;
+			}
+			default:{
+				System.out.println(ANSI_YELLOW + "Please input an integer between 1 and 10." + ANSI_RESET);
 			}
 			}
 			
@@ -115,9 +120,18 @@ public class TestUtilities {
 		int classNum = Integer.parseInt(input);
 						
 		ResultSet sessionByClass = dbObj.getSessionsByClass(classSub, classNum);
-		while(sessionByClass.next()) {
-			System.out.println(sessionByClass.getString(1) + " " + sessionByClass.getString(2) + " " + sessionByClass.getString(3) + " " + sessionByClass.getString(4) + " " + sessionByClass.getString(5));
-		}	
+
+		if(sessionByClass.next() == false){
+			System.out.println(ANSI_YELLOW + "No study sessions found for that class. ResultSet returned empty." + ANSI_RESET);
+		} else {
+			for(int i = 1; i <= sessionByClass.getMetaData().getColumnCount(); i++){
+				System.out.print(sessionByClass.getMetaData().getColumnName(i) + " ");
+			}
+			System.out.println();
+			do{
+				System.out.println(sessionByClass.getString(1) + " " + sessionByClass.getString(2) + " " + sessionByClass.getString(3) + " " + sessionByClass.getString(4) + " " + sessionByClass.getString(5));
+			}while(sessionByClass.next());
+		}
 	}
 	
 	static void tutorInfo() throws SQLException {
@@ -126,8 +140,13 @@ public class TestUtilities {
 		String tutorIDInput = keyboard.nextLine();
 		int tutorID = Integer.parseInt(tutorIDInput);
 		ResultSet rs = dbObj.getTutorInfo(tutorID);
-		while (rs.next()) {
-			System.out.println(rs.getString(1) + " " + rs.getString(2) + "\t" + rs.getString(4) + "\t" + rs.getString(3) + "\t" + rs.getString(5));
+
+		if(rs.next() == false){
+			System.out.println(ANSI_YELLOW + "No study sessions found for that tutor. ResultSet returned empty." + ANSI_RESET);
+		} else {
+			do{
+				System.out.println(rs.getString(1) + " " + rs.getString(2) + "\t" + rs.getString(4) + "\t" + rs.getString(3) + "\t" + rs.getString(5));
+			} while (rs.next());
 		}
 	}
 	
