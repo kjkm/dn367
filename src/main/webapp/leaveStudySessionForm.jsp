@@ -15,17 +15,6 @@
 
     <form action="leaveStudySessionHandler.jsp" method="get">
       <div class="input">
-	      <label for="studentID">Student ID Number: </label>
-	      <input
-	        type="text"
-	        id="studentID"
-	        name="studentID"
-	        value=""
-	        size="10"
-	        required
-	      />
-      </div>
-      <div class="input">
 	      <label for="sessionID">Session ID Number: </label>
 	      <input
 	        type="text"

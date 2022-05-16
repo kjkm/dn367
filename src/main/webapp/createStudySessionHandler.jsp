@@ -1,20 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
-<%@ page import="java.sql.*" %>
-<%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
 <html>
 <%@ include file="meta.jsp" %> <%@ include file="nav.jsp" %>
+  <%
+	 HashMap<String, String> user = (HashMap<String, String>) session.getAttribute("user");
+	 if (user== null || user.get("studentID") == "") { %>
+	    	<jsp:forward page="login.jsp"></jsp:forward>
+	 <% } %>
 <body>
 
 <% 
-	int tutorID = Integer.parseInt(request.getParameter("tutorID"));
 	String sessionDay = request.getParameter("sessionDay");
 	String sessionTime = request.getParameter("sessionTime");
 	float duration = Float.parseFloat(request.getParameter("duration"));
 	String location = request.getParameter("location");
-	myUtil.createStudySession(tutorID, sessionDay, sessionTime, duration, location);
+	myUtil.createStudySession(Integer.parseInt(user.get("studentID")), sessionDay, sessionTime, duration, location);
 	%>
 	
 	<h2>

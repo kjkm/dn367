@@ -9,11 +9,12 @@
 	    	<jsp:forward page="login.jsp"></jsp:forward>
 	 <% } %>
   <body>
-    <% String studentIDString = request.getParameter("studentID"); String
-    sessionIDString = request.getParameter("sessionID"); myUtil.openDB(); int
-    studentID = Integer.parseInt(studentIDString); int sessionID =
-    Integer.parseInt(sessionIDString);
-    myUtil.leaveStudySession(sessionID,sessionID); myUtil.closeDB();%>
+    <% 
+    String sessionIDString = request.getParameter("sessionID");  
+    int studentID = Integer.parseInt(user.get("studentID")); 
+    int sessionID = Integer.parseInt(sessionIDString);
+    myUtil.leaveStudySession(sessionID,sessionID); 
+    %>
 
     <h2>
       Congratulations! The specified student was removed from the study session!

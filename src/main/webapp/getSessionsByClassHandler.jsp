@@ -22,6 +22,7 @@
         <th>Session Time</th>
         <th>Location</th>
         <th>Tutor ID</th>
+        <th>Join</th>
       </tr>
       <% while(rs.next()) { %>
       <tr>
@@ -30,6 +31,13 @@
         <td><%= rs.getString(3) %></td>
         <td><%= rs.getString(4) %></td>
         <td><%= rs.getString(5) %></td>
+        <td>
+          <form method="get" action="joinStudySessionHandler.jsp">
+            <input type="text" class="invisible" name="sessionID" value=<%= rs.getString(1) %>/>
+            <input type="text" class="invisible" name="studentID" value=<%= user.get("studentID") %>/>
+            <input type="submit" class="submit-button" value="Join"/>
+          </form>
+        </td>
       </tr>
       <% } %>
     </table>
