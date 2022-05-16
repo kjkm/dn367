@@ -30,16 +30,35 @@
          <input type="text" name="sessionID" id="sessionID" value="" size="10">
        </div>
        
-       <div class="input">
-         <label for="sessionTime">New Time</label>
-         <input type="text" name="sessionTime" id="sessionTime" value="" size="10">
-       </div>
- 
-       <div class="input">
-         <label for="sessionDay">New Day</label>
-         <input type="text" name="sessionDay" id="sessionDay" value="" size="10">
-       </div>
-       
+<% String[] sessionDays = myUtil.getSessionDays(); %>
+   		<div class="input">
+	      <label for="sessionDay">Session Day: </label>
+	      <select name="sessionDay" class="selector">
+	      	<% for (int i = 0; i < sessionDays.length; i++) { %>
+	      	<%
+	      		String val = sessionDays[i];
+	      	%>
+	      	<option value=<%= val %>
+            ><%= val %>
+          </option>
+	      	<% } %>
+	      </select>
+      	</div>
+      	
+      	<% Integer[] sessionTimes = myUtil.getSessionTimes();  %>
+   		<div class="input">
+	      <label for="sessionTime">Session Time: </label>
+	      <select name="sessionTime" class="selector">
+	      	<% for (int i = 0; i < sessionTimes.length; i++) { %>
+	      	<%
+	      		int val = sessionTimes[i];
+	      	%>
+	      	<option value=<%= val %>
+            ><%= val %>
+          </option>
+	      	<% } %>
+	      </select>
+      	</div>
        <input class="submit-button" type="submit" value="Submit">
     </form>
     </body>
