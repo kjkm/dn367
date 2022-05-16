@@ -127,7 +127,7 @@ public class TestUtilities {
 		int tutorID = Integer.parseInt(tutorIDInput);
 		ResultSet rs = dbObj.getTutorInfo(tutorID);
 		while (rs.next()) {
-			System.out.println(rs.getString(1) + " " + rs.getString(2) + "\t" + rs.getString(4) + "\t" + rs.getString(3) + "\t" + rs.getString(5) + "\t" + rs.getString(6));
+			System.out.println(rs.getString(1) + " " + rs.getString(2) + "\t" + rs.getString(4) + "\t" + rs.getString(3) + "\t" + rs.getString(5));
 		}
 	}
 	
@@ -135,7 +135,7 @@ public class TestUtilities {
 		//test for createStudySession (Cade)
 		// Tutor ID is of type int(8)
 		System.out.print("Please input tutor ID: ");
-		String tutorIDInput = keyboard.next();
+		String tutorIDInput = keyboard.nextLine();
 		int tutorID = Integer.parseInt(tutorIDInput);
 		
 		// Can be 'MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY'
