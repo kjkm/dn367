@@ -17,9 +17,12 @@
 	 <% } %>
   <body>
     <% String fname = request.getParameter("fname"); String lname =
-    request.getParameter("lname"); myUtil.openDB(); ResultSet rs =
-    myUtil.getSessionsByStudent(fname,lname);%>
-
+    request.getParameter("lname"); myUtil.openDB(); 
+    ResultSet rs = myUtil.getSessionsByStudent(fname,lname);
+    ResultSet rs1 = myUtil.getSessionsByStudent(fname,lname); 
+    %>
+    
+    <% if (rs1.next()) { %>
     <table>
       <thead>
          <tr>
@@ -51,5 +54,8 @@
       </tr>
       <%}%>
     </table>
+    <% } else { %>
+      <h2>There are no sessions associated with this student.</h2>
+    <% } %>
   </body>
 </html>

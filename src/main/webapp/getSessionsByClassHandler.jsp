@@ -13,8 +13,11 @@
     String chosenClass = request.getParameter("class");
     System.out.println(chosenClass);
     String[] splitClass = chosenClass.split("-");
-    ResultSet rs = myUtil.getSessionsByClass(splitClass[0], Integer.parseInt(splitClass[1]));%>
+    ResultSet rs = myUtil.getSessionsByClass(splitClass[0], Integer.parseInt(splitClass[1]));
+    ResultSet rs1 = myUtil.getSessionsByClass(splitClass[0], Integer.parseInt(splitClass[1]));
+    %>
 
+    <% if (rs1.next()) { %>
     <table>
       <tr>
         <th>Session ID</th>
@@ -41,5 +44,8 @@
       </tr>
       <% } %>
     </table>
+    <% } else { %>
+      <h2>There are no sessions for this class.</h2>
+    <% } %>
   </body>
 </html>
