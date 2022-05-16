@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
         <span>-</span>
         <a href="getSessionsByStudentForm.jsp">Find Student Sessions</a>
         <span>-</span>
-        <a href="getSessionsByStudentForm.jsp">Change Session Location</a>
+        <a href="updateSessionForm.jsp">Update Session</a>
       </div>
     </nav>
   </body>
