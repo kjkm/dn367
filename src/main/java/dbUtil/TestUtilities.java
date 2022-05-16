@@ -22,10 +22,12 @@ public class TestUtilities {
 			System.out.println("5) Leave a study session");
 			System.out.println("6) Find all study sessions a student is a part of");
 			System.out.println("7) Change study session location");
-			System.out.println("8) Quit and close database");
+			System.out.println("8) Change study session time");
+			System.out.println("9) Join study session");
+			System.out.println("10) Quit and close database");
 			choiceInp = keyboard.nextLine();
 			choice = Integer.parseInt(choiceInp);
-			if(choice > 8 || choice < 1) {
+			if(choice > 10 || choice < 1) {
 				System.out.println("Please input a valid choice");
 				continue;
 			}
@@ -59,6 +61,14 @@ public class TestUtilities {
 				break;
 			}
 			case 8: {
+				changeSessionTime();
+				break;
+			}
+			case 9: {
+				joinStudySession();
+				break;
+			}
+			case 10: {
 				dbObj.closeDB();
 				done = true;
 				break;
@@ -67,7 +77,37 @@ public class TestUtilities {
 			
 		}
 	}
+	
+	static void joinStudySession() throws SQLException {
+		//test for joinStudySession(int studentID, int sessionID)
+		System.out.print("Please input student ID: ");
+		String studentIDInput = keyboard.nextLine();
+		int sID = Integer.parseInt(studentIDInput);
+		
+		System.out.print("Please input session ID: ");
+		String sessionIDInput = keyboard.nextLine();
+		int seshID = Integer.parseInt(sessionIDInput);
+		
+		dbObj.joinStudySession(sID, seshID);
+	}
+	
+	static void changeSessionTime() throws SQLException {
+		//test for changeSessionTime(int sessionID, String newDay, String newTime)
+		System.out.println("Please input session ID: ");
+		String sessionIDInput = keyboard.nextLine();
+		int sessionID = Integer.parseInt(sessionIDInput);
+		
+		System.out.println("Please input new session Day: ");
+		String dayInput = keyboard.nextLine();
+		
+		System.out.println("Please input new session Time: ");
+		String timeInput = keyboard.nextLine();
+
+		dbObj.changeSessionTime(sessionID, dayInput, timeInput);
+	}
+	
 	static void studySessionsByClass() throws SQLException {
+		//test for getSessionsByClass(String classSub, int classNum)
 		System.out.print("Please input class subject: ");
 		String classSub = keyboard.nextLine();
 		System.out.print("Please input class number: ");
@@ -81,11 +121,13 @@ public class TestUtilities {
 	}
 	
 	static void tutorInfo() throws SQLException {
+		//test for getTutorInfo(String studentID)
 		System.out.print("Please input the desired tutor ID: ");
-		String tutorID = keyboard.nextLine();
+		String tutorIDInput = keyboard.nextLine();
+		int tutorID = Integer.parseInt(tutorIDInput);
 		ResultSet rs = dbObj.getTutorInfo(tutorID);
 		while (rs.next()) {
-			System.out.println(rs.getString(1) + " " + rs.getString(2) + "\t" + rs.getString(4) + "\t" + rs.getString(3) + "\t" + rs.getString(5) + "\t" + rs.getString(6));
+			System.out.println(rs.getString(1) + " " + rs.getString(2) + "\t" + rs.getString(4) + "\t" + rs.getString(3) + "\t" + rs.getString(5));
 		}
 	}
 	
@@ -93,7 +135,7 @@ public class TestUtilities {
 		//test for createStudySession (Cade)
 		// Tutor ID is of type int(8)
 		System.out.print("Please input tutor ID: ");
-		String tutorIDInput = keyboard.next();
+		String tutorIDInput = keyboard.nextLine();
 		int tutorID = Integer.parseInt(tutorIDInput);
 		
 		// Can be 'MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY'
@@ -114,6 +156,7 @@ public class TestUtilities {
 		
 		dbObj.createStudySession(tutorID, sessionDay, sessionTime, duration, location);
 	}
+	
 	static void leaveStudySession() throws SQLException {
 		//test for leaveStudySession
 		System.out.print("Please input student ID: ");
@@ -126,6 +169,7 @@ public class TestUtilities {
 		
 		dbObj.leaveStudySession(sID, seshID);
 	}
+	
 	static void findSessionsByStudent() throws SQLException {
 		//test for sessionsByStudent
 		System.out.print("Please input the desired first name of the student: ");
@@ -148,20 +192,4 @@ public class TestUtilities {
 
 		dbObj.changeSessionLocation(testID, locationInput);
 	}
-	
-//	static void studySessionsByClass() throws SQLException {
-//		System.out.print("Please input session ID: ");
-//		int sessionID = keyboard.nextInt();
-//		System.out.print("Please input class subject: ");
-//		String classSub = keyboard.next();
-//		System.out.print("Please input class number: ");
-//		int classNum = keyboard.nextInt();
-//		//int classNum = Integer.parseInt(input);
-//						
-//		ResultSet sessionByClass = dbObj.getSessionsByClass(sessionID, classSub, classNum);
-//		while(sessionByClass.next()) {
-//			System.out.println(sessionByClass.getString(1) + " " + sessionByClass.getString(2) + " " + sessionByClass.getString(3) + " " + sessionByClass.getString(4) + " " + sessionByClass.getString(5));
-//		}	
-//	}
-
 }
