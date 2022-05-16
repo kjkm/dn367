@@ -12,9 +12,11 @@
     <% 
     String studentID = request.getParameter("studentID"); 
     ResultSet rs = myUtil.getTutorInfo(Integer.parseInt(studentID)); 
+    ResultSet rs1 = myUtil.getTutorInfo(Integer.parseInt(studentID)); 
     %>
 
     <h2>All information for student ID: <%=studentID%></h2>
+    <% if (rs1.next()) { %>
     <table>
       <thead>
         <tr>
@@ -36,5 +38,8 @@
         <% } %>
       </tbody>
     </table>
+     <% } else { %>
+       <h2>This tutor does not have a study session associated with them. Please try a different tutor.</h2>
+     <% } %> 
   </body>
 </html>
