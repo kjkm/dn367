@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
+<%@ page import="java.sql.*" %> <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
   <%@ include file="meta.jsp" %>
   <body id="header-content">
     <h1 id="title">Datanauts</h1>
+    <%
+      HashMap<String, String> foundUser = (HashMap<String, String>) session.getAttribute("user");
+      if (foundUser != null && foundUser.get("studentID") != "") {
+    %>
     <nav id="#nav">
       <div class="nav-row">
         <a href="getSessionsByClassForm.jsp">Get Study Sessions</a>
@@ -22,5 +28,6 @@ pageEncoding="UTF-8"%>
         <a href="updateSessionForm.jsp">Update Session</a>
       </div>
     </nav>
+    <% } %>
   </body>
 </html>

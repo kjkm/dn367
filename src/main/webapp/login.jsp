@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
-<%@ page import="java.sql.*" %> <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
 <%@ include file="meta.jsp" %>

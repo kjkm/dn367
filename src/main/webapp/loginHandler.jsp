@@ -1,7 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<jsp:useBean id="myUtil" class="dbUtil.Utilities" scope="session"></jsp:useBean>
-<%@ page import="java.sql.*" %> <%@ page import="java.util.*" %>
 
 <!DOCTYPE html>
 <%@ include file="meta.jsp" %>
@@ -14,7 +10,6 @@ pageEncoding="UTF-8"%>
     HashMap<String, String> user = myUtil.login(studentID, password);
     if (user.get("studentID") != "") { 
     	session.setAttribute("user", user);
-    	HashMap<String, String> foundUser = (HashMap<String, String>) session.getAttribute("user");
      } else { %>
     	<jsp:forward page="login.jsp"></jsp:forward>
     <% } %>
