@@ -12,6 +12,7 @@ pageEncoding="UTF-8"%>
       HashMap<String, String> foundUser = (HashMap<String, String>) session.getAttribute("user");
       if (foundUser != null && foundUser.get("studentID") != "") {
     %>
+    
     <h4 id="logged">Logged in: <%= foundUser.get("name") %>, isTutor: <%= foundUser.get("isTutor") %></h4>
     <nav id="#nav">
       <div class="nav-row">

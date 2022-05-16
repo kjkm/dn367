@@ -15,7 +15,7 @@
 		<% String[] sessionDays = myUtil.getSessionDays(); %>
    		<div class="input">
 	      <label for="sessionDay">Session Day: </label>
-	      <select name="class" class="selector">
+	      <select name="sessionDay" class="selector">
 	      	<% for (int i = 0; i < sessionDays.length; i++) { %>
 	      	<%
 	      		String val = sessionDays[i];
@@ -30,7 +30,7 @@
       	<% Integer[] sessionTimes = myUtil.getSessionTimes();  %>
    		<div class="input">
 	      <label for="sessionTime">Session Time: </label>
-	      <select name="class" class="selector">
+	      <select name="sessionTime" class="selector">
 	      	<% for (int i = 0; i < sessionTimes.length; i++) { %>
 	      	<%
 	      		int val = sessionTimes[i];
