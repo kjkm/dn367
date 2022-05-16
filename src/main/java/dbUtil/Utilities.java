@@ -58,10 +58,10 @@ public class Utilities {
 		
 		/**
 		 * Adrian Ronquillo - Takes in a studentId, and returns the information 
-		 * for a tutor (Student ID, first name, lsat name, classes, subjects)
+		 * for a tutor (Student ID, first name, last name, classes, subjects)
 		 * @param studentID The student ID to query the database
 		 */
-		public ResultSet getTutorInfo(String studentID) {
+		public ResultSet getTutorInfo(int studentID) {
 			ResultSet rset = null;
 			String sql = null;
 
@@ -73,7 +73,7 @@ public class Utilities {
 						+ "STUDY_SESSION.sessionID = ATTENDS.sessionID;";
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.clearParameters();
-				pstmt.setString(1, studentID); // set the 1 parameter
+				pstmt.setInt(1, studentID); // set the 1 parameter
 				rset = pstmt.executeQuery();
 			} catch (SQLException e) {
 				System.out.println("sql:" + sql);
@@ -161,6 +161,28 @@ public class Utilities {
 			} catch (SQLException e) {
 				System.out.println("sql:" + sql);
 				System.out.println("e.getMessage:" + e.getMessage());
+			}
+		}
+		
+		/**
+		 * Cade Lilley - Takes in studentID and sessionID and adds instance to ATTENDS
+		 * @param userID int(8)
+		 * @param sessionID int
+		 */
+		public void joinStudySession(int userID, int sessionID) {
+			String sql = "";
+			try {
+				sql = "INSERT INTO ATTENDS (studentID, sessionID) VALUES (?, ?)";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.clearParameters();
+				pstmt.setInt(1, userID);
+				pstmt.setInt(2, sessionID);
+				pstmt.executeUpdate();
+				System.out.printf("Added user with ID %d to Study Session\n", userID);
+			}
+			catch (SQLException e) {
+				System.out.println("SQL: " + sql);
+				System.out.println("Error: " + e.getMessage());
 			}
 		}
 
@@ -280,28 +302,4 @@ public class Utilities {
 			}
 			return rs;
 		}
-		
-		
-		
-//		public ResultSet getSessionsByClass(int sessionID, String classSub, int classNum){
-//		    ResultSet rset = null;
-//		    String sql = null;
-//		    
-//		    try {
-//		        //prepared statement with given parameters String classSub and int classNum
-//		        sql = "SELECT tutorID, sessionDay, sessionTime FROM STUDY_SESSION, CLASS_FOR "
-//		               + "WHERE CLASS_FOR.sessionID = STUDY_SESSION.sessionID and "
-//		               + "CLASS_FOR.sessionID = ? and classSub = ? and classNum = ?";
-//		        PreparedStatement pstmt = conn.prepareStatement(sql);
-//		        pstmt.clearParameters();
-//		        pstmt.setInt(1, sessionID);
-//		        pstmt.setString(2, classSub);
-//		        pstmt.setInt(3, classNum);
-//		        rset = pstmt.executeQuery();
-//		    } catch (SQLException e) {
-//		        System.out.println("sql: " + sql);
-//		        System.out.println("e.getMessage:" + e.getMessage());
-//		    }
-//		    return rset;
-//		}
 }
