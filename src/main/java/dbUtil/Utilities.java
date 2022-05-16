@@ -67,7 +67,7 @@ public class Utilities {
 
 			try {
 				// create a Statement and an SQL string for the statement
-				sql = "SELECT CONCAT(firstName, ' ', lastName) name, STUDENT.studentID as studentID, classNumber, "
+				sql = "SELECT location, classNumber, "
 						+ "classSubject, sessionDay, sessionTime FROM STUDENT, TUTORS_CLASS, ATTENDS, STUDY_SESSION WHERE STUDENT.isTutor = 1 AND "
 						+ "TUTORS_CLASS.tutorID = STUDENT.studentID AND STUDENT.studentID = ? AND ATTENDS.studentID = STUDENT.studentID AND "
 						+ "STUDY_SESSION.sessionID = ATTENDS.sessionID;";
@@ -263,14 +263,14 @@ public class Utilities {
 		
 		
 		/**
-		 * Function which gets all subjects from the database.
-		 * @return a ResultSet which contains all of the subjects from the database
+		 * Function which gets all classes from the database.
+		 * @return a ResultSet which contains all of the classes from the database
 		 */
-		public ResultSet getSubject() {
+		public ResultSet getClasses() {
 			String sql = "";
 			ResultSet rs = null;
 			try {
-				sql = "SELECT distinct classSubject from CLASS";
+				sql = "SELECT distinct classSubject, classNumber from CLASS";
 				PreparedStatement ps = conn.prepareStatement(sql);
 				rs = ps.executeQuery();
 			}

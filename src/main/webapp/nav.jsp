@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
     <h1 id="title">Datanauts</h1>
     <nav id="#nav">
       <div class="nav-row">
-        <a href="getSessionsByStudentForm.jsp">Get Study Sessions</a>
+        <a href="getSessionsByClassForm.jsp">Get Study Sessions</a>
         <span>-</span>
         <a href="getTutorInformationForm.jsp">Get Tutor Info</a>
         <span>-</span>

@@ -71,14 +71,18 @@ thead {
 	border-bottom: 1px solid white;
 }
 
-#student-selector {
+.selector {
 	display: block;
-	margin: 5rem auto;
+	margin: auto;
 	width: 20rem;
-	height: 6rem;
+	height: 4rem;
 	font-size: 2rem;
 	font-family: "Merienda One", cursive;
 	text-align: center;
+}
+
+.tutor-info {
+	margin-bottom: 2rem;
 }
 
 .submit-button {

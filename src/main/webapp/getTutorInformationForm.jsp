@@ -13,7 +13,7 @@ pageEncoding="UTF-8"%>
 
     <% ResultSet rs = myUtil.getTutors(); %>
     <form action="getTutorInformationHandler.jsp" method="get">
-      <select id="student-selector" name="studentID">
+      <select class="selector tutor-info" name="studentID">
         <% while (rs.next()) { %>
         <option value=<%= rs.getString(3) %>
           > <%= rs.getString(1) + " " + rs.getString(2) %>

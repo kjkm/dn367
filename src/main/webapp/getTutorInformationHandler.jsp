@@ -14,8 +14,7 @@ pageEncoding="UTF-8"%>
     <table>
       <thead>
         <tr>
-	      <th>Name</th>
-	      <th>StudentID</th>
+	      <th>Location</th>
 	      <th>Class</th>
 	      <th>Day</th>
 	      <th>Time</th>
@@ -26,10 +25,9 @@ pageEncoding="UTF-8"%>
         <% while (rs.next()) { %>
         <tr>
           <td><%= rs.getString(1) %></td>
-          <td><%= rs.getString(2) %></td>
-          <td><%= rs.getString(3) + " " + rs.getString(4) %></td>
+          <td><%= rs.getString(3) + " " + rs.getString(2) %></td>
+          <td><%= rs.getString(4) %></td>
           <td><%= rs.getString(5) %></td>
-          <td><%= rs.getString(6) %></td>
         </tr>
         <% } %>
       </tbody>
