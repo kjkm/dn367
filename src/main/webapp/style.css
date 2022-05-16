@@ -102,9 +102,10 @@ thead {
 	cursor: pointer;
 	border-radius: 10%;
 	margin: 0 auto;
+	text-align: center;
 }
 
-#submit-button:hover {
+.submit-button:hover {
 	background-color: #950740;
 }
 
@@ -128,4 +129,8 @@ thead {
 
 .get-started {
 	margin-top: 3rem;
+}
+
+.invisible {
+	display: none;
 }

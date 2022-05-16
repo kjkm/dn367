@@ -9,7 +9,10 @@
 	    	<jsp:forward page="login.jsp"></jsp:forward>
 	 <% } %>
   <body>
-    <% String studentID = request.getParameter("studentID"); ResultSet rs = myUtil.getTutorInfo(studentID); %>
+    <% 
+    String studentID = request.getParameter("studentID"); 
+    ResultSet rs = myUtil.getTutorInfo(Integer.parseInt(studentID)); 
+    %>
 
     <h2>All information for student ID: <%=studentID%></h2>
     <table>

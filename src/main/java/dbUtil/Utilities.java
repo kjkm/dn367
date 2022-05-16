@@ -97,7 +97,7 @@ public class Utilities {
 		 * @param classNum unique number identifying the specific class of a department
 		 * @return ResultSet filled with tutorID, sessionDay, and sessionTime
 		 */
-		public ResultSet getSessionsByClass(String classSub, int classNum){
+		public ResultSet getSessionsByClass(String classSub, int classNum) {
 		    ResultSet rset = null;
 		    String sql = null;
 		    
