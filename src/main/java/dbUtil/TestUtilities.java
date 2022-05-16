@@ -137,6 +137,7 @@ public class TestUtilities {
 		System.out.print("Please input tutor ID: ");
 		String tutorIDInput = keyboard.nextLine();
 		int tutorID = Integer.parseInt(tutorIDInput);
+		keyboard.nextLine();
 		
 		// Can be 'MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY'
 		System.out.print("Please input session day: ");
@@ -145,6 +146,7 @@ public class TestUtilities {
 		// Can be '900','930','1000','1030','1100','1130','1200','1230','1300','1330','1400','1430','1500','1530','1600','1630','1700','1730','1800','1830','1900','1930','2000'
 		System.out.print("Please input session time: ");
 		String sessionTime = keyboard.nextLine();
+		System.out.println(sessionTime);
 		
 		// Duration is a float
 		System.out.print("Please input duration: ");
