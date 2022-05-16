@@ -12,14 +12,24 @@
 <% 
 	String sessionDay = request.getParameter("sessionDay");
 	String sessionTime = request.getParameter("sessionTime");
-	float duration = Float.parseFloat(request.getParameter("duration"));
-	String location = request.getParameter("location");
-	myUtil.createStudySession(Integer.parseInt(user.get("studentID")), sessionDay, sessionTime, duration, location);
+	boolean error = false;
+	float duration = 0;
+	try{
+		int sessionTimeTemp = Integer.parseInt(sessionTime);
+		duration = Float.parseFloat(request.getParameter("duration"));
+	}
+	catch(Exception e){
+		error = true;
+	}
+	if(!error){
 	%>
 	
 	<h2>
 		The study session has been created!
 	</h2>
+	<%} else{%>
+	<h2>There was an error in your declarations. Please try again.</h2>
+	<%}%>
 	<form action="createStudySessionForm.jsp" method="get">
 		<div class="input">
 		</div>
